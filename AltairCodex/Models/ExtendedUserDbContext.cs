@@ -7,9 +7,11 @@ namespace AltairCodex.Models
 {
     public class ExtendedUserDbContext : IdentityDbContext<ExtendedUser>
     {
+
         public DbSet<Address> Addresses { get; set; }
 
         public ExtendedUserDbContext(string connectionString) : base(connectionString) { }
+        public ExtendedUserDbContext() : base(connectionString) { }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -24,8 +26,10 @@ namespace AltairCodex.Models
             user.Property(x => x.FullName).IsRequired().HasMaxLength(256)
                 .HasColumnAnnotation("Index", new IndexAnnotation(
                     new IndexAttribute("FullNameIndex")));
-            user.
-            user.HasMany(x => x.Addresses).WithRequired().HasForeignKey(x => x.UserId);
+
+            address.HasKey(x => x.UserId);
+            user.HasRequired(x => x.Address).WithRequiredPrincipal(x => x.User);
+           
         }
     }
 }

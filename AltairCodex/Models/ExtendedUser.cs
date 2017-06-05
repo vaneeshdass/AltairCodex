@@ -18,5 +18,7 @@ namespace AltairCodex.Models
         public long PinCode { get; set; }
         public DbGeography Location { get; set; }
 
+        public virtual ExtendedUser User { get; set; }
+
     }
 }

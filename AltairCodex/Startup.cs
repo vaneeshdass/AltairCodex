@@ -3,7 +3,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Owin;
 using Microsoft.AspNet.Identity.Owin;
-
+using AltairCodex.Models;
+using Microsoft.Owin.Security.Cookies;
 
 [assembly: OwinStartup(typeof(AltairCodex.Startup))]
 
@@ -17,10 +18,10 @@ namespace AltairCodex
         public void Configuration(IAppBuilder app)
         {
             const string connectionString =@"Data Source=(LocalDb)\MSSQLLocalDB;Database=AltairCodex.Module1.1;trusted_connection=yes;";
-            app.CreatePerOwinContext(() => new IdentityDbContext(connectionString));
-            app.CreatePerOwinContext<UserStore<IdentityUser>>((opt, cont) => new UserStore<IdentityUser>(cont.Get<IdentityDbContext>()));
-            app.CreatePerOwinContext<UserManager<IdentityUser>>(
-                (opt, cont) => new UserManager<IdentityUser>(cont.Get<UserStore<IdentityUser>>()));
+            app.CreatePerOwinContext(() => new ExtendedUserDbContext(connectionString));
+            app.CreatePerOwinContext<UserStore<ExtendedUser>>((opt, cont) => new UserStore<ExtendedUser>(cont.Get<ExtendedUserDbContext>()));
+            app.CreatePerOwinContext<UserManager<ExtendedUser>>(
+                (opt, cont) => new UserManager<ExtendedUser>(cont.Get<UserStore<ExtendedUser>>()));
 
             app.CreatePerOwinContext<SignInManager<ExtendedUser, string>>(
                (opt, cont) =>
