@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure.Annotations;
+using System.Configuration;
 
 namespace AltairCodex.Models
 {
@@ -11,7 +12,7 @@ namespace AltairCodex.Models
         public DbSet<Address> Addresses { get; set; }
 
         public ExtendedUserDbContext(string connectionString) : base(connectionString) { }
-        public ExtendedUserDbContext() : base(connectionString) { }
+        public ExtendedUserDbContext() : base(ConfigurationManager.AppSettings["ConnString"].ToString()) { }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

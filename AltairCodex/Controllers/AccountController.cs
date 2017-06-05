@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using AltairCodex.Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System;
@@ -12,7 +13,7 @@ namespace AltairCodex.Controllers
 {
     public class AccountController : Controller
     {
-        public UserManager<IdentityUser> UserManager => HttpContext.GetOwinContext().Get<UserManager<IdentityUser>>();
+        public UserManager<ExtendedUser> UserManager => HttpContext.GetOwinContext().Get<UserManager<ExtendedUser>>();
 
         public SignInManager<IdentityUser, string> SignInManager
             => HttpContext.GetOwinContext().Get<SignInManager<IdentityUser, string>>();
@@ -32,7 +33,7 @@ namespace AltairCodex.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            var identityResult = await UserManager.CreateAsync(new IdentityUser(model.Username), model.Password);
+            var identityResult = await UserManager.CreateAsync(new ExtendedUser(model.Username), model.Password);
 
             if (identityResult.Succeeded)
             {
@@ -50,5 +51,12 @@ namespace AltairCodex.Controllers
     {
         public string Username { get; set; }
         public string Password { get; set; }
+
+        public string FullName { get; set; }
+        public string AddressLine { get; set; }
+        public string Country { get; set; }
+        public long PinCode { get; set; }
+        public string Location { get; set; }
+
     }
 }
