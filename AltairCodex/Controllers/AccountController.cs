@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Spatial;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -33,7 +34,15 @@ namespace AltairCodex.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            var identityResult = await UserManager.CreateAsync(new ExtendedUser(model.Username), model.Password);
+            var user = new ExtendedUser
+            {
+                UserName = model.Username,
+                FullName = model.FullName
+            };
+
+            user.Addresses.Add(new Address { AddressLine = model.AddressLine, Country = model.Country, PinCode = model.PinCode, Location = DbGeography.FromText("POINT(13.0046949 77.7126473)") });
+
+            var identityResult = await UserManager.CreateAsync(user, model.Password);
 
             if (identityResult.Succeeded)
             {
