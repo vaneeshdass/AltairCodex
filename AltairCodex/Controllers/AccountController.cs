@@ -14,7 +14,7 @@ namespace AltairCodex.Controllers
 {
     public class AccountController : Controller
     {
-        public UserManager<ExtendedUser> UserManager => HttpContext.GetOwinContext().Get<UserManager<ExtendedUser>>();
+        public UserManager<IdentityUser> UserManager => HttpContext.GetOwinContext().Get<UserManager<IdentityUser>>();
 
         public SignInManager<IdentityUser, string> SignInManager
             => HttpContext.GetOwinContext().Get<SignInManager<IdentityUser, string>>();
@@ -32,17 +32,9 @@ namespace AltairCodex.Controllers
             if (identityUser != null)
             {
                 return RedirectToAction("Index", "Home");
-            }
-
-            var user = new ExtendedUser
-            {
-                UserName = model.Username,
-                FullName = model.FullName
-            };
-
-            user.Addresses.Add(new Address { AddressLine = model.AddressLine, Country = model.Country, PinCode = model.PinCode, Location = DbGeography.FromText("POINT(13.0046949 77.7126473)") });
-
-            var identityResult = await UserManager.CreateAsync(user, model.Password);
+            }           
+                     
+            var identityResult = await UserManager.CreateAsync(new IdentityUser(model.Username), model.Password);
 
             if (identityResult.Succeeded)
             {
