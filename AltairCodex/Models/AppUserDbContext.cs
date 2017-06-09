@@ -24,11 +24,7 @@ namespace AltairCodex.Models
 
             var game = modelBuilder.Entity<Game>();
 
-            game.HasKey(x=>x.GameId).HasOptional<AppUser>(x => x.AppUser).WithMany(x => x.Games).HasForeignKey(x => x.AppUserId);
-
-            var user = modelBuilder.Entity<AppUser>();
-
-            user.HasKey(x=>x.Id);
+            game.HasRequired<AppUser>(x => x.AppUser).WithMany(x => x.Games);
 
         }
     }
