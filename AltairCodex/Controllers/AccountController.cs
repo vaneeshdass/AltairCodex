@@ -19,7 +19,8 @@ namespace AltairCodex.Controllers
         public SignInManager<IdentityUser, string> SignInManager
             => HttpContext.GetOwinContext().Get<SignInManager<IdentityUser, string>>();
 
-       
+        AltairCodexDbContext context = new AltairCodexDbContext();
+
         public ActionResult Register()
         {
             return View();
@@ -32,10 +33,21 @@ namespace AltairCodex.Controllers
             if (identityUser != null)
             {
                 return RedirectToAction("Index", "Home");
-            }           
-                     
-            var identityResult = await UserManager.CreateAsync(new IdentityUser(model.Username), model.Password);
+            }
 
+            var identityResult = await UserManager.CreateAsync(new IdentityUser(model.Username), model.Password);
+            var identityUser2 = await UserManager.FindByNameAsync(model.Username);
+            var user = context.AppUsers.Add(new AppUser()
+            {
+                IdentityId = identityUser2.Id,
+            FullName = model.FullName,
+                AddressLine = model.AddressLine,
+                Country = model.Country,
+                PinCode = model.PinCode,
+                Location = DbGeography.FromText("POINT(13.0046949 77.7126473)"),
+                DateCreated = DateTime.Now
+            });
+            context.SaveChanges();
             if (identityResult.Succeeded)
             {
                 return RedirectToAction("Index", "Home");

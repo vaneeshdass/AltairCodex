@@ -184,6 +184,10 @@
     <Compile Include="Migrations\201706110905177_Intial.Designer.cs">
       <DependentUpon>201706110905177_Intial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706111411258_AddIdentityIdColumnInAppUser.cs" />
+    <Compile Include="Migrations\201706111411258_AddIdentityIdColumnInAppUser.Designer.cs">
+      <DependentUpon>201706111411258_AddIdentityIdColumnInAppUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AltairCodexInitializer.cs" />
     <Compile Include="Models\AppUser.cs" />
@@ -257,6 +261,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201706110905177_Intial.resx">
       <DependentUpon>201706110905177_Intial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706111411258_AddIdentityIdColumnInAppUser.resx">
+      <DependentUpon>201706111411258_AddIdentityIdColumnInAppUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

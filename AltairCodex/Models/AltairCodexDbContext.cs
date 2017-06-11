@@ -10,7 +10,7 @@ namespace AltairCodex.Models
     {
 
         public DbSet<Game> Games { get; set; }
-        public DbSet<AppUser> Users { get; set; }
+        public DbSet<AppUser> AppUsers { get; set; }
 
         public AltairCodexDbContext(string connectionString) : base(connectionString) { }
         public AltairCodexDbContext() : base(ConfigurationManager.AppSettings["ConnString"].ToString())

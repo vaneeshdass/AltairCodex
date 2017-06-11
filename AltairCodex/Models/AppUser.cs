@@ -12,9 +12,10 @@ namespace AltairCodex.Models
         {
             Games = new List<Game>();
         }
-       
-        
+
+
         public int AppUserId { get; set; }
+        public string IdentityId { get; set; }
         public string FullName { get; set; }
 
         public string AddressLine { get; set; }
