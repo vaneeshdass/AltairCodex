@@ -180,13 +180,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706091228362_OneToMany.cs" />
-    <Compile Include="Migrations\201706091228362_OneToMany.Designer.cs">
-      <DependentUpon>201706091228362_OneToMany.cs</DependentUpon>
+    <Compile Include="Migrations\201706110905177_Intial.cs" />
+    <Compile Include="Migrations\201706110905177_Intial.Designer.cs">
+      <DependentUpon>201706110905177_Intial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AltairCodexInitializer.cs" />
     <Compile Include="Models\AppUser.cs" />
-    <Compile Include="Models\AppUserDbContext.cs" />
+    <Compile Include="Models\AltairCodexDbContext.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -254,8 +255,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706091228362_OneToMany.resx">
-      <DependentUpon>201706091228362_OneToMany.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706110905177_Intial.resx">
+      <DependentUpon>201706110905177_Intial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -6,14 +6,14 @@ using System.Configuration;
 
 namespace AltairCodex.Models
 {
-    public class AppUserDbContext : DbContext
+    public class AltairCodexDbContext : DbContext
     {
 
         public DbSet<Game> Games { get; set; }
-        public DbSet<AppUser> Users{ get; set; }
+        public DbSet<AppUser> Users { get; set; }
 
-        public AppUserDbContext(string connectionString) : base(connectionString) { }
-        public AppUserDbContext() : base(ConfigurationManager.AppSettings["ConnString"].ToString())
+        public AltairCodexDbContext(string connectionString) : base(connectionString) { }
+        public AltairCodexDbContext() : base(ConfigurationManager.AppSettings["ConnString"].ToString())
         {
 
         }
@@ -25,6 +25,9 @@ namespace AltairCodex.Models
             var game = modelBuilder.Entity<Game>();
 
             game.HasRequired<AppUser>(x => x.AppUser).WithMany(x => x.Games);
+
+            var appUser = modelBuilder.Entity<AppUser>();
+            appUser.Property(x => x.AppUserId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
         }
     }

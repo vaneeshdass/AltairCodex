@@ -17,6 +17,8 @@ namespace AltairCodex.Models
 
         public Platform Platform { get; set; }
 
+        public DateTime DateCreated { get; set; }
+
         public virtual AppUser AppUser { get; set; }
     }
 

@@ -7,13 +7,13 @@ namespace AltairCodex.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class OneToMany : IMigrationMetadata
+    public sealed partial class Intial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(OneToMany));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Intial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201706091228362_OneToMany"; }
+            get { return "201706110905177_Intial"; }
         }
         
         string IMigrationMetadata.Source
